@@ -1,0 +1,11 @@
+#numeros {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.bilhete {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #0d0d0d;
+}
