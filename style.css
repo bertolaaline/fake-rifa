@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&family=Share+Tech+Mono&family=Spartan&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Spartan', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+.titulo {
+  font-family: 'Oleo Script', cursive;
+}
+
+.numeral {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.header {
+  font-size: 2rem;
+  padding: 3rem 0;
+  text-align: center;
+}
+
 #numeros {
   display: flex;
   flex-direction: row;
@@ -5,9 +33,10 @@
 }
 
 .bilhete {
-  padding: 5px;
+  padding: 2rem 2rem;
   margin: 5px;
-  border: 1px solid #0d0d0d;
+  border: 1px solid #7f8c8d;
+  border-radius: 5px;
 }
 
 .reservado {
