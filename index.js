@@ -18,10 +18,11 @@ const montaTela = () => {
 
   for (const bilhete of bilhetes) {
     const element = document.createElement("div")
-    //element.innerText = bilhete.numero
-    element.innerHTML = `<p class='numeral'>${bilhete.numero}</p>`
+    element.innerText = bilhete.numero
+    //element.innerHTML = `<p class='numeral'>${bilhete.numero}</p>`
     element.setAttribute("id", `bilhete-${bilhete.numero}`)
     element.setAttribute("class", "bilhete")
+    element.classList.add("numeral")
     element.classList.add(bilhete.status)
     numerosDiv.appendChild(element)
   }  
