@@ -32,12 +32,29 @@ const reservar = numeroBilhete => {
   montaTela()
 }
 
+const vender = numeroBilhete => {
+  bilhetes[numeroBilhete - 1].status = "vendido"
+  montaTela()
+}
+
+const mudarStatus = numeroBilhete => {
+  const status = bilhetes[numeroBilhete - 1].status
+
+  if (status === "disponivel") {
+    reservar(numeroBilhete)
+  }
+
+  if (status === "reservado") {
+    vender(numeroBilhete)
+  }
+}
+
 geraBilhetes()
 montaTela()
 
 numerosDiv.addEventListener("click", e => {
   if(e.target.id.includes("bilhete")) {
     const numeroBilhete = e.target.id.split("-")[1]
-    reservar(numeroBilhete)
+    mudarStatus(numeroBilhete)
   }
 })
