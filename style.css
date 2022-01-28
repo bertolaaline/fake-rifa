@@ -12,6 +12,11 @@ h1 {
   font-size: 5rem;
 }
 
+.logo {
+  width: 250px;
+  height: 250px;
+}
+
 .titulo {
   font-family: 'Oleo Script', cursive;
   color: #2c3e50;
@@ -36,15 +41,26 @@ h1 {
 .bilhete {
   padding: 2rem 2rem;
   margin: 5px;
-  border: 1px solid #7f8c8d;
-  border-radius: 5px;
   cursor: pointer;
+  width: 180px;
+  height: 100px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.disponivel {
+  background-image: url("./img/disponivel.jpg");
+  background-size: cover;
 }
 
 .reservado {
-  background-color: #f1c40f;
+  background-image: url("./img/reservado.jpg");
+  background-size: cover;
 }
 
 .vendido {
-  background-color: #2ecc71;
+  background-image: url("./img/vendido.jpg");
+  background-size: cover;
 }
