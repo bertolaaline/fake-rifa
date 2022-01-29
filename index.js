@@ -3,11 +3,19 @@ const numerosDiv = document.querySelector("#numeros")
 
 const bilhetes = []
 
+const varianteDeStatus = [
+  "disponivel",
+  "reservado",
+  "vendido"
+]
+
+const sorteio = limite => Math.floor(Math.random() * limite)
+
 const geraBilhetes = () => {
   for (let i = 0; i < quantidadeDeBilhetes; i++) {
     const bilhete = {
       numero: i + 1,
-      status: "disponivel"
+      status: varianteDeStatus[sorteio(varianteDeStatus.length)]
     }
     bilhetes.push(bilhete)
   }
