@@ -28,14 +28,30 @@ const montaTela = () => {
   }  
 }
 
+const atualizaInfoBox = () => {
+  const disponiveis = bilhetes.filter(bilhete => bilhete.status === "disponivel")
+  const reservados = bilhetes.filter(bilhete => bilhete.status === "reservado")
+  const vendidos = bilhetes.filter(bilhete => bilhete.status === "vendido")
+
+  const infoTextDisponiveis = document.querySelector("#info-text-disponivel")
+  const infoTextReservados = document.querySelector("#info-text-reservado")
+  const infoTextVendidos = document.querySelector("#info-text-vendido")
+
+  infoTextDisponiveis.innerText = disponiveis.length
+  infoTextReservados.innerText = reservados.length
+  infoTextVendidos.innerText = vendidos.length
+}
+
 const reservar = numeroBilhete => {
   bilhetes[numeroBilhete - 1].status = "reservado"
   montaTela()
+  atualizaInfoBox()
 }
 
 const vender = numeroBilhete => {
   bilhetes[numeroBilhete - 1].status = "vendido"
   montaTela()
+  atualizaInfoBox()
 }
 
 const mudarStatus = numeroBilhete => {
@@ -52,6 +68,7 @@ const mudarStatus = numeroBilhete => {
 
 geraBilhetes()
 montaTela()
+atualizaInfoBox()
 
 numerosDiv.addEventListener("click", e => {
   if(e.target.id.includes("bilhete")) {
