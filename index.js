@@ -1,25 +1,8 @@
 const quantidadeDeBilhetes = 1000
 const numerosDiv = document.querySelector("#numeros")
 
+
 const bilhetes = []
-
-const varianteDeStatus = [
-  "disponivel",
-  "reservado",
-  "vendido"
-]
-
-const sorteio = limite => Math.floor(Math.random() * limite)
-
-const geraBilhetes = () => {
-  for (let i = 0; i < quantidadeDeBilhetes; i++) {
-    const bilhete = {
-      numero: i + 1,
-      status: varianteDeStatus[sorteio(varianteDeStatus.length)]
-    }
-    bilhetes.push(bilhete)
-  }
-}
 
 const montaTela = () => {
   numerosDiv.innerHTML = ""
@@ -50,20 +33,26 @@ const atualizaInfoBox = () => {
   infoTextVendidos.innerText = vendidos.length
 }
 
+const pegarChave = numeroBilhete => {
+  const bilheteFiltrado = bilhetes.filter(bl => bl.numero === parseInt(numeroBilhete))[0]
+  const chaveDoBilhete = bilhetes.indexOf(bilheteFiltrado)
+  return chaveDoBilhete
+}
+
 const reservar = numeroBilhete => {
-  bilhetes[numeroBilhete - 1].status = "reservado"
+  bilhetes[pegarChave(numeroBilhete)].status = "reservado"
   montaTela()
   atualizaInfoBox()
 }
 
 const vender = numeroBilhete => {
-  bilhetes[numeroBilhete - 1].status = "vendido"
+  bilhetes[pegarChave(numeroBilhete)].status = "vendido"
   montaTela()
   atualizaInfoBox()
 }
 
 const mudarStatus = numeroBilhete => {
-  const status = bilhetes[numeroBilhete - 1].status
+  const status = bilhetes[pegarChave(numeroBilhete)].status
 
   if (status === "disponivel") {
     reservar(numeroBilhete)
@@ -74,9 +63,15 @@ const mudarStatus = numeroBilhete => {
   }
 }
 
-geraBilhetes()
-montaTela()
-atualizaInfoBox()
+const init = async() => {
+  const listaDeBilhetes = (await axios.get("https://fake-rifa.deta.dev/bilhetes")).data.bilhetes
+
+  bilhetes.push(...listaDeBilhetes)
+  montaTela()
+  atualizaInfoBox()
+}
+
+init()
 
 numerosDiv.addEventListener("click", e => {
   if(e.target.id.includes("bilhete")) {
