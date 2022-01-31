@@ -7,7 +7,9 @@ const bilhetes = []
 const montaTela = () => {
   numerosDiv.innerHTML = ""
 
-  for (const bilhete of bilhetes) {
+  const bilhetesOrdenados = bilhetes.sort((a,b) => a.numero - b.numero)
+
+  for (const bilhete of bilhetesOrdenados) {
     const element = document.createElement("div")
     element.innerText = bilhete.numero
     //element.innerHTML = `<p class='numeral'>${bilhete.numero}</p>`
